@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
-import TableHeader from './tableHeader';
-import TableBody from './tableBody';
+import Table from './table';
 // import './table.css'
 
-const Table = (props) => {
+const DataTable = (props) => {
   let [data, setData] = useState([]);
   useEffect(() => {
     async function fetchData(){
@@ -18,13 +17,8 @@ const Table = (props) => {
   }, []);
 
   return (
-    <div style={{'maxHeight': '400px', 'overflow': 'scroll', 'margin': '0 auto', 'fontSize': '10px', clear: 'both'}}>
-      <table style={{width: '100%'}}>
-        <TableHeader data={data} />
-        <TableBody data={data} />
-      </table>
-    </div>
+    <Table data={data} />
   )
 }
 
-export default Table;
+export default DataTable;
