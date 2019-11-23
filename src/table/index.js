@@ -17,22 +17,26 @@ const DataTable = (props) => {
 
   return (
     <Table
-      rows={data}
+      rows={data} 
       columns={[{
         id: "albumId",
         label : "AlbumId",
+        element : data => <span>{data.albumId}</span>,
         width: "100px"
       }, {
         id: "id",
         label : "id",
+        element : data => <span>{data.id}</span>,
         width: "100px"
       }, {
         id: "thumbnailUrl",
         label : "thumbnailUrl",
+        element : data => <span>{data.thumbnailUrl}</span>,
         width: "100px"
       },{
         id: "title",
         label : "Title",
+        element : data => <span>{data.title}</span>,
         width: "100px"
       }]}
     />

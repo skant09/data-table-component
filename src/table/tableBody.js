@@ -2,13 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux'
 // import './table.css'
 
-const TableHeader = ({data, columns}) => {
+const TableBody = ({data, columns}) => {
   return (
     <tbody>
-      {data.map((datum, rowIndex) => {
+      {data.length && data.map((datum, rowIndex) => {
         return (<tr key={rowIndex}>
-          {columns.map((column, columnIndex) => {
-            return (<td>{rowIndex+''+columnIndex}</td>)
+          {columns.length && columns.map((column, columnIndex) => {
+            return (<td key={rowIndex+''+columnIndex}>{rowIndex+''+columnIndex}</td>)
           })}
         </tr>)
       })}
@@ -16,4 +16,4 @@ const TableHeader = ({data, columns}) => {
   )
 }
 
-export default TableHeader;
+export default TableBody;
