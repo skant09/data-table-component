@@ -20,7 +20,7 @@ const Table = ({columns, rows}) => {
     <div style={{'maxHeight': '400px', 'overflow': 'scroll', 'margin': '0 auto', 'fontSize': '10px', clear: 'both'}}>
       <table style={{width: '100%'}}>
         <TableHeader columns={columns} />
-        <TableBody data={rows} />
+        {rows.length && <TableBody data={rows} columns={columns} />}
       </table>
     </div>
   )
