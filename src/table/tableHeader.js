@@ -2,17 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux'
 // import './table.css'
 
-const Table = ({data, filter, removeCar}) => {
+const TableHeader = ({columns}) => {
   return (
     <thead style={{background: '#ccc', border: 'none'}}>
       <tr>
-        <th>#</th>
-        <th>AlbumId</th>
-        <th>Thumbnail</th>
-        <th>Title</th>
+        {columns.map(column => {
+          return (<th key={column.id}>{column.label}</th>)
+        })}
       </tr>
     </thead>
   )
 }
 
-export default Table;
+export default TableHeader;

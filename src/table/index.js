@@ -10,14 +10,32 @@ const DataTable = (props) => {
       // fetch Data
       let data = await fetch('https://jsonplaceholder.typicode.com/photos')
                       .then(respone => respone.json());
-      console.log(data);
       setData(data);
     }
     fetchData();
   }, []);
 
   return (
-    <Table data={data} />
+    <Table
+      rows={data}
+      columns={[{
+        id: "albumId",
+        label : "AlbumId",
+        width: "100px"
+      }, {
+        id: "id",
+        label : "id",
+        width: "100px"
+      }, {
+        id: "thumbnailUrl",
+        label : "thumbnailUrl",
+        width: "100px"
+      },{
+        id: "title",
+        label : "Title",
+        width: "100px"
+      }]}
+    />
   )
 }
 
