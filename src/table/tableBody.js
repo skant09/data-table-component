@@ -8,7 +8,7 @@ const TableBody = ({data, columns}) => {
       {data.length ? data.map((datum, rowIndex) => {
         return (<tr key={rowIndex}>
           {columns.length && columns.map((column, columnIndex) => {
-            return (<td key={rowIndex+''+columnIndex}>{column.element(datum)}</td>)
+            return (<td key={rowIndex+''+columnIndex} style={{textAlign: column.textAlign}}>{column.element(datum)}</td>)
           })}
         </tr>)
       }): null}
