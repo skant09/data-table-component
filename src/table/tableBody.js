@@ -5,13 +5,13 @@ import { connect } from 'react-redux'
 const TableBody = ({data, columns}) => {
   return (
     <tbody>
-      {data.length && data.map((datum, rowIndex) => {
+      {data.length ? data.map((datum, rowIndex) => {
         return (<tr key={rowIndex}>
           {columns.length && columns.map((column, columnIndex) => {
-            return (<td key={rowIndex+''+columnIndex}>{rowIndex+''+columnIndex}</td>)
+            return (<td key={rowIndex+''+columnIndex}>{column.element(datum)}</td>)
           })}
         </tr>)
-      })}
+      }): null}
     </tbody>
   )
 }
