@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<div
+  className="App"
+>
+  <header
+    className="App-header"
+  >
+    Datatable
+  </header>
+  <div
+    style={
+      Object {
+        "clear": "both",
+        "fontSize": "10px",
+        "margin": "0 auto",
+        "maxHeight": "400px",
+        "overflow": "scroll",
+      }
+    }
+  >
+    <table
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <thead
+        style={
+          Object {
+            "background": "#ccc",
+            "border": "none",
+          }
+        }
+      >
+        <tr>
+          <th>
+            #
+          </th>
+          <th>
+            AlbumId
+          </th>
+          <th>
+            id
+          </th>
+          <th>
+            thumbnailUrl
+          </th>
+          <th>
+            Title
+          </th>
+        </tr>
+      </thead>
+      <tbody />
+    </table>
+  </div>
+</div>
+`;

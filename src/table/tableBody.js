@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux'
 // import './table.css'
 
-const TableBody = ({data, columns}) => {
+const TableBody = ({data, columns, onRowClick}) => {
   return (
     <tbody>
       {data.length ? data.map((datum, rowIndex) => {
-        return (<tr key={rowIndex}>
+        return (<tr key={rowIndex} onClick={onRowClick}>
           {columns.length && columns.map((column, columnIndex) => {
             return (<td key={rowIndex+''+columnIndex} style={{textAlign: column.textAlign}}>{column.element(datum)}</td>)
           })}

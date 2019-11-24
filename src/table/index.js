@@ -1,21 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import Table from './table';
+import IndexComponent from './indexComponent';
 // import './table.css'
-
-const IndexComponent = props => {
-  const [hoverState, setHoverState] = useState();
-  const setCheckboxState = state => e => {
-    setHoverState(state);
-  }
-  if(hoverState){
-    return <input type="checkbox" value={props.id} checked onChange={console.log(props) || setCheckboxState(false)} />
-  }
-  return (
-    <span onClick={setCheckboxState(true)}>{props.albumId}</span>
-  )
-}
-
 
 const DataTable = (props) => {
   let [data, setData] = useState([]);
@@ -31,8 +18,14 @@ const DataTable = (props) => {
 
   return (
     <Table
+      onRowClick={e => console.log(e)}
+      onSelectionChanged={e => console.log(e, 'selection Changed')}
       rows={data} 
       columns={[{
+        id: "number",
+        label : "#",
+        element : props => <input type="checkbox" value={props.id} checked onChange={e => console.log(props)} />
+      },{
         id: "albumId",
         label : "AlbumId",
         element : IndexComponent,

@@ -1,9 +1,21 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {shallow} from 'enzyme';
+import renderer from 'react-test-renderer';
+
+
 import App from './App';
+import Table from './table';
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+  shallow(<App />);
+  const app = renderer.create(<App />).toJSON();
+  expect(app).toMatchSnapshot();
+});
+
+it('renders with header and table', () => {
+  const app = shallow(<App />);
+  const header = <header className="App-header">Datatable</header>;
+  const table = <Table />
+  expect(app).toContainReact(header);
+  expect(app).toContainReact(table);
 });

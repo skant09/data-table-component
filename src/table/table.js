@@ -4,7 +4,7 @@ import TableHeader from './tableHeader';
 import TableBody from './tableBody';
 // import './table.css'
 
-const Table = ({columns, rows}) => {
+const Table = ({columns, rows, onRowClick}) => {
   let [data, setData] = useState([]);
   useEffect(() => {
     async function fetchData(){
@@ -20,7 +20,7 @@ const Table = ({columns, rows}) => {
     <div style={{'maxHeight': '400px', 'overflow': 'scroll', 'margin': '0 auto', 'fontSize': '10px', clear: 'both'}}>
       <table style={{width: '100%'}}>
         <TableHeader columns={columns} />
-        <TableBody data={rows} columns={columns} />
+        <TableBody data={rows} columns={columns} onRowClick={onRowClick} />
       </table>
     </div>
   )
