@@ -3,21 +3,10 @@ import TableHeader from './tableHeader';
 import TableBody from './tableBody';
 // import './table.css'
 
-const Table = ({columns, rows, onRowClick, selectRows, setPreviousPage, setNextPage}) => {
-  let [data, setData] = useState([]);
-  useEffect(() => {
-    async function fetchData(){
-      // fetch Data
-      let data = await fetch('https://jsonplaceholder.typicode.com/photos')
-                      .then(respone => respone.json());
-      setData(data);
-    }
-    fetchData();
-  }, []);
-  
+const Table = ({columns, rows, onRowClick, selectRows, setNextPage}) => {
   let scrollhandler = e => {
-    let obj = e.target;
-    if(obj.scrollTop >= (obj.scrollHeight - 2 * obj.offsetHeight)){
+    let ele = e.target;
+    if(ele.scrollTop + 50 >= (ele.scrollHeight - ele.offsetHeight)){
       setNextPage()
     };
   }
