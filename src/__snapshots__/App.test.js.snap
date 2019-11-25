@@ -37,7 +37,10 @@ exports[`renders without crashing 1`] = `
       >
         <tr>
           <th>
-            #
+            <input
+              onClick={[Function]}
+              type="checkbox"
+            />
           </th>
           <th>
             AlbumId

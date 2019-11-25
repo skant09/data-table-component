@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import Table from './table';
-import CheckboxComponent from './indexComponent';
-import {startWorker, stopWorker} from './worker'
+import CheckboxComponent from './CheckboxComponent';
 // import './table.css'
 
 export const columnsConfig = [
   {
     id: "number",
-    label : props => (<input type="checkbox" checked={props.checked} onClick={selectAllRows}/>),
+    label : props => (<input type="checkbox" checked={props.checked} onClick={selectRows()}/>),
     element : CheckboxComponent
   },{
     id: "albumId",
@@ -36,7 +35,7 @@ export const columnsConfig = [
   }
 ]
 
-let selectAllRows;
+let selectRows;
 
 const DataTable = (props) => {
   let [data, setData] = useState([]);
@@ -50,22 +49,17 @@ const DataTable = (props) => {
     fetchData();
   }, []);
 
-  // let w = startWorker();  
-
-  // console.log(w);
-  selectAllRows = async function(e){
-    let state = data[0].checked;
-    let string = JSON.stringify(data);
-    let bufView = new Int8Array(data.length);
-    bufView.set(data);
-    let w =  await startWorker(); 
-    data.length = 10;
-    w.postMessage(Buffer.from(JSON.stringify(data)));
-    // w.postMessage(function(d){
-    //   d.checked = Boolean(state);
-    //   return d;
-    // });
-    // setData(data);
+  selectRows = selection => e => {
+    data = data.map((d, i) => {
+      if(selection && selection.rowIndex === i){
+        d.checked = !Boolean(d.checked);
+      }
+      if(!selection){
+        d.checked = !Boolean(d.checked);
+      }
+      return d
+    })
+    setData(data)
   }
 
   return (
