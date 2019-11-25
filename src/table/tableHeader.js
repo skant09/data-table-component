@@ -3,7 +3,7 @@ import React from 'react';
 
 const TableHeader = ({columns}) => {
   return (
-    <thead style={{background: '#ccc', border: 'none'}}>
+    <thead style={{background: '#ccc', border: 'none', position: 'sticky', top: '0px'}}>
       <tr>
         {columns && columns.length && columns.map(column => {
           return (<th key={column.id}>

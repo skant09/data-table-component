@@ -25,6 +25,8 @@ exports[`renders without crashing 1`] = `
         Object {
           "background": "#ccc",
           "border": "none",
+          "position": "sticky",
+          "top": "0px",
         }
       }
     >
