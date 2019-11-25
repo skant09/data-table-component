@@ -10,6 +10,7 @@ exports[`renders without crashing 1`] = `
     Datatable
   </header>
   <div
+    onScroll={[Function]}
     style={
       Object {
         "clear": "both",

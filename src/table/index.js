@@ -39,6 +39,10 @@ let selectRows;
 
 const DataTable = (props) => {
   let [data, setData] = useState([]);
+  let [currentPage, setCurrentPage] = useState(1);
+  let [currentData, setCurrentData] = useState([]);
+  let [neighbour, setNeighbour] = useState(1);
+  let numberOfEntry = 100;
   useEffect(() => {
     async function fetchData(){
       // fetch Data
@@ -49,9 +53,17 @@ const DataTable = (props) => {
     fetchData();
   }, []);
 
+  useEffect(()=>{
+    let totalNumberOfPages = Math.ceil(data.length/numberOfEntry);
+    let startIndex = Math.max(currentPage - neighbour, 0) * numberOfEntry;
+    let endIndex = Math.min(currentPage + neighbour, totalNumberOfPages) * numberOfEntry;
+    let currentData = data.slice(startIndex, endIndex);
+    setCurrentData(currentData);
+  }, [data, neighbour])
+
   selectRows = selection => e => {
     data = data.map((d, i) => {
-      if(selection && selection.rowIndex === i){
+      if(selection && selection.rowIndex === i) {
         d.checked = !Boolean(d.checked);
       }
       if(!selection){
@@ -62,12 +74,26 @@ const DataTable = (props) => {
     setData(data)
   }
 
+  let setNextPage = () => {
+    console.log('setNextPage');
+    setNeighbour(neighbour++);
+    // setCurrentPage(Math.min(currentPage++, Math.ceil(data.length/numberOfEntry)));
+  }
+  let setPreviousPage = () => {
+    console.log('setPreviousPage');
+    setCurrentPage(Math.max(currentPage-- , 0));
+  }
+
   return (
     <Table
+      setPreviousPage={setPreviousPage}
+      setNextPage={setNextPage}
+      selectRows={selectRows}
       onRowClick={e => console.log(e)}
       onSelectionChanged={e => console.log(e, 'selection Changed')}
-      rows={data} 
+      rows={currentData}
       columns={columnsConfig}
+      numberOfEntry={numberOfEntry}
     />
   )
 }

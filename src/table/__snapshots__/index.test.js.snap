@@ -2,6 +2,7 @@
 
 exports[`renders without crashing 1`] = `
 <div
+  onScroll={[Function]}
   style={
     Object {
       "clear": "both",
