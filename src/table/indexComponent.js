@@ -1,16 +1,13 @@
 import React, {useState} from 'react';
 
 
-const IndexComponent = props => {
-  const [hoverState, setHoverState] = useState();
-  const setCheckboxState = state => e => {
-    setHoverState(state);
-  }
-  if(hoverState){
-    return <input type="checkbox" value={props.id} checked onChange={console.log(props) || setCheckboxState(false)} />
+const CheckboxComponent = props => {
+  const [hoverState, setHoverState] = useState(props.checked);
+  const toggelCheckboxState = e => {
+    setHoverState(!hoverState);
   }
   return (
-    <span onClick={setCheckboxState(true)}>{props.albumId}</span>
+    <input type="checkbox" value={props.id} checked={Boolean(props.checked)} onChange={toggelCheckboxState} />
   )
 }
-export default IndexComponent
+export default CheckboxComponent

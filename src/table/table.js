@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import { connect } from 'react-redux';
 import TableHeader from './tableHeader';
 import TableBody from './tableBody';
 // import './table.css'
