@@ -3,11 +3,14 @@ import TableHeader from './tableHeader';
 import TableBody from './tableBody';
 // import './table.css'
 
-const Table = ({columns, rows, onRowClick, selectRows, setNextPage}) => {
+const Table = ({columns, rows, onRowClick, selectRows, setPreviousPage, setNextPage}) => {
   let scrollhandler = e => {
     let ele = e.target;
     if(ele.scrollTop + 50 >= (ele.scrollHeight - ele.offsetHeight)){
       setNextPage()
+    };
+    if(ele.scrollHeight < 100){
+      setPreviousPage()
     };
   }
 

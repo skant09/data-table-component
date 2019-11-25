@@ -77,6 +77,9 @@ const DataTable = (props) => {
   let setNextPage = () => {
     setCurrentPage(currentPage++);
   }
+  let setPreviousPage = () => {
+    setCurrentPage(currentPage--);
+  }
 
   return (
     <Table
