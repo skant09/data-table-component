@@ -7,7 +7,7 @@ const TableBody = props => {
   return (
     <tbody>
       {rows && rows.length ? rows.map((datum, rowIndex) => {
-        return (<TableRow key={rowIndex} datum={datum} {...props} />)
+        return (<TableRow key={rowIndex} rowIndex={rowIndex}  datum={datum} {...props} />)
       }): null}
     </tbody>
   )

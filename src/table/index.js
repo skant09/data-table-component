@@ -6,7 +6,7 @@ import CheckboxComponent from './CheckboxComponent';
 export const columnsConfig = [
   {
     id: "number",
-    label : props => (<input type="checkbox" checked={props.checked} onClick={selectRows()}/>),
+    label : props => (<input type="checkbox" checked={props.allSelected} onClick={selectRows()}/>),
     element : CheckboxComponent
   },{
     id: "albumId",
@@ -42,6 +42,7 @@ const DataTable = (props) => {
   let [currentPage, setCurrentPage] = useState(0);
   let [currentData, setCurrentData] = useState([]);
   let [isLoadingData, setIsLoadingData] = useState(false);
+  let [allSelected, setAllSelected] = useState(false);
   let [neighbour] = useState(2);
   const numberOfEntryPerPage = 100;
   const totalNumberOfPages = Math.ceil(data.length/numberOfEntryPerPage);
@@ -68,14 +69,21 @@ const DataTable = (props) => {
   }, [data, currentPage, neighbour])
 
   selectRows = selection => e => {
+    if(!selection) {
+      setAllSelected(!Boolean(allSelected));
+      data = data.map((d, i) => {
+        d.checked = !Boolean(allSelected);
+        return {...d}
+      })
+      return setData(data)  
+    } 
+    console.log(selection);
     data = data.map((d, i) => {
       if(selection && selection.rowIndex === i) {
-        d.checked = !Boolean(d.checked);
+        console.log(d);
+        d.checked = !Boolean(selection.checked);
       }
-      if(!selection){
-        d.checked = !Boolean(d.checked);
-      }
-      return d
+      return {...d}
     })
     setData(data)
   }
@@ -91,9 +99,9 @@ const DataTable = (props) => {
   return (
     <>
       <Table
+        allSelected={allSelected}
         setNextPage={setNextPage}
         selectRows={selectRows}
-        onRowClick={e => console.log(e)}
         onSelectionChanged={e => console.log(e, 'selection Changed')}
         rows={currentData}
         columns={columnsConfig}
