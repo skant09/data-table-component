@@ -39,7 +39,7 @@ let selectRows;
 
 const DataTable = (props) => {
   let [data, setData] = useState([]);
-  let [currentPage, setCurrentPage] = useState(1);
+  let [currentPage, setCurrentPage] = useState(0);
   let [currentData, setCurrentData] = useState([]);
   let [isLoadingData, setIsLoadingData] = useState(false);
   let [neighbour] = useState(2);
@@ -52,10 +52,10 @@ const DataTable = (props) => {
       let startIndex = currentPage * numberOfEntryPerPage;
       let url = "https://jsonplaceholder.typicode.com/photos?";
       setIsLoadingData(true);
-      let data = await fetch(url + '_start='+ startIndex + '&limit=' + numberOfEntryPerPage)
+      let _data = await fetch(url + '_start='+ startIndex + '&_limit=' + numberOfEntryPerPage)
                       .then(respone => respone.json());
       setIsLoadingData(false);
-      setData(data);
+      setData([...data, ..._data]);
     }
     fetchData();
   }, [currentPage]);
@@ -81,6 +81,8 @@ const DataTable = (props) => {
   }
 
   let setNextPage = () => {
+    let startIndex = currentPage * numberOfEntryPerPage;
+    if(startIndex > data.length) return;
     setCurrentPage(currentPage++);
   }
   let setPreviousPage = () => {
