@@ -2,11 +2,12 @@ import React from 'react';
 import TableRow from './tableRow'
 // import './table.css'
 
-const TableBody = ({data, columns, onRowClick, selectRows}) => {
+const TableBody = props => {
+  const { rows } = props;
   return (
     <tbody>
-      {data.length ? data.map((datum, rowIndex) => {
-        return (<TableRow key={rowIndex} {...{datum, rowIndex, onRowClick, columns, selectRows}} />)
+      {rows && rows.length ? rows.map((datum, rowIndex) => {
+        return (<TableRow key={rowIndex} datum={datum} {...props} />)
       }): null}
     </tbody>
   )

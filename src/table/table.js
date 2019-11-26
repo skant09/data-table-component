@@ -4,7 +4,7 @@ import TableBody from './tableBody';
 // import './table.css'
 
 const Table = props => {
-  const {columns, rows, onRowClick, selectRows, setPreviousPage, setNextPage} = props;
+  const {columns, setPreviousPage, setNextPage} = props;
   let scrollhandler = e => {
     let ele = e.target;
     if(ele.scrollTop + 50 >= (ele.scrollHeight - ele.offsetHeight)){
@@ -19,7 +19,7 @@ const Table = props => {
     <div style={{'maxHeight': '400px', 'overflow': 'scroll', 'margin': '0 auto', 'fontSize': '10px', clear: 'both'}} onScroll={scrollhandler} >
       <table style={{width: '100%'}}>
         <TableHeader columns={columns} />
-        <TableBody data={rows} columns={columns} onRowClick={onRowClick} selectRows={selectRows} />
+        <TableBody {...props} />
       </table>
     </div>
   )
