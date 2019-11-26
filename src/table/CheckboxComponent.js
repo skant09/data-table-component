@@ -2,7 +2,12 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 
 const CheckboxComponent = props => {
-  const [checkedState, setcheckedState] = useState(props.checked);
+  if(!props){
+    props = {
+      checked: false
+    }
+  }
+  const [checkedState, setcheckedState] = useState(props.checked || false);
   const toggelCheckboxState = e => {
     setcheckedState(!checkedState);
   }

@@ -9,10 +9,10 @@ const mockedEventhandler = jest.fn(event => {
 });
 
 it('renders without crashing', () => {
-  shallow(<CheckboxComponent />);
+  shallow(<CheckboxComponent checked={false} />);
 });
 
 it('matches snapshot', () => {
-  const app = renderer.create(<CheckboxComponent onChnage={mockedEventhandler} columns={columnsConfig} rows={[]}/>).toJSON();
+  const app = renderer.create(<CheckboxComponent onChange={mockedEventhandler} columns={columnsConfig} checked={true} />).toJSON();
   expect(app).toMatchSnapshot();
 });

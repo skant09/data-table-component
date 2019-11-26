@@ -2,7 +2,7 @@
 
 exports[`matches snapshot 1`] = `
 <input
-  checked={false}
+  checked={true}
   onChange={[Function]}
   type="checkbox"
 />

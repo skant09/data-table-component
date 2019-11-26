@@ -54,7 +54,7 @@ exports[`renders without crashing 1`] = `
           <th>
             <input
               checked={false}
-              onClick={[Function]}
+              onChange={[Function]}
               type="checkbox"
             />
           </th>
