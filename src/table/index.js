@@ -6,7 +6,7 @@ import CheckboxComponent from './CheckboxComponent';
 export const columnsConfig = [
   {
     id: "number",
-    label : props => (<input type="checkbox" checked={props.allSelected} onClick={selectRows()}/>),
+    label : props => (<input type="checkbox" checked={props.allSelected} onChange={selectRows()}/>),
     element : CheckboxComponent
   },{
     id: "albumId",
@@ -92,9 +92,9 @@ const DataTable = (props) => {
     if(startIndex > data.length) return;
     setCurrentPage(currentPage++);
   }
-  let setPreviousPage = () => {
-    setCurrentPage(currentPage--);
-  }
+  // let setPreviousPage = () => {
+  //   setCurrentPage(currentPage--);
+  // }
   let fetchSearchTerm = e => {
     setCurrentPage(0);
     setData([]);

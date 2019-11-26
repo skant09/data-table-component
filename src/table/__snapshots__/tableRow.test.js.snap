@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<tr
+  onClick={[Function]}
+>
+  <td
+    onClick={[Function]}
+    style={
+      Object {
+        "textAlign": undefined,
+      }
+    }
+  >
+    <input
+      checked={false}
+      onChange={[Function]}
+      type="checkbox"
+      value="1"
+    />
+  </td>
+  <td
+    onClick={[Function]}
+    style={
+      Object {
+        "textAlign": "right",
+      }
+    }
+  >
+    <span />
+  </td>
+  <td
+    onClick={[Function]}
+    style={
+      Object {
+        "textAlign": "right",
+      }
+    }
+  >
+    <span>
+      1
+    </span>
+  </td>
+  <td
+    onClick={[Function]}
+    style={
+      Object {
+        "textAlign": "left",
+      }
+    }
+  >
+    <span />
+  </td>
+  <td
+    onClick={[Function]}
+    style={
+      Object {
+        "textAlign": "left",
+      }
+    }
+  >
+    <span />
+  </td>
+</tr>
+`;

@@ -1,13 +1,18 @@
 import React, {useState} from 'react';
-
+import PropTypes from 'prop-types';
 
 const CheckboxComponent = props => {
-  const [hoverState, setHoverState] = useState(props.checked);
+  const [checkedState, setcheckedState] = useState(props.checked);
   const toggelCheckboxState = e => {
-    setHoverState(!hoverState);
+    setcheckedState(!checkedState);
   }
   return (
     <input type="checkbox" value={props.id} checked={Boolean(props.checked)} onChange={toggelCheckboxState} />
   )
 }
 export default CheckboxComponent
+
+CheckboxComponent.propTypes = {
+  id: PropTypes.number,
+  checked: PropTypes.bool,
+};

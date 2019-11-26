@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 // import './table.css'
 
 const TableHeader = ({columns, allSelected}) => {
@@ -17,3 +18,7 @@ const TableHeader = ({columns, allSelected}) => {
 }
 
 export default TableHeader;
+TableHeader.propTypes = {
+  columns: PropTypes.arrayOf(Object),
+  allSelected: PropTypes.bool
+}

@@ -9,6 +9,18 @@ exports[`renders without crashing 1`] = `
   >
     Datatable
   </header>
+  <input
+    onChange={[Function]}
+    placeholder="Search any term..."
+    style={
+      Object {
+        "fontSize": "24px",
+        "height": "30px",
+        "width": "100%",
+      }
+    }
+    type="text"
+  />
   <div
     onScroll={[Function]}
     style={
@@ -41,6 +53,7 @@ exports[`renders without crashing 1`] = `
         <tr>
           <th>
             <input
+              checked={false}
               onClick={[Function]}
               type="checkbox"
             />
@@ -61,6 +74,19 @@ exports[`renders without crashing 1`] = `
       </thead>
       <tbody />
     </table>
+  </div>
+  <div>
+    <span
+      style={
+        Object {
+          "fontSize": "24px",
+          "textAlign": "center",
+          "width": "100%",
+        }
+      }
+    >
+      No data found
+    </span>
   </div>
 </div>
 `;

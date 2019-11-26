@@ -1,6 +1,7 @@
 import React from 'react';
 import TableHeader from './tableHeader';
 import TableBody from './tableBody';
+import PropTypes from 'prop-types';
 // import './table.css'
 
 const Table = props => {
@@ -25,3 +26,9 @@ const Table = props => {
 }
 
 export default Table;
+Table.propTypes = {
+  columns: PropTypes.arrayOf(Object),
+  setPreviousPage: PropTypes.func,
+  setNextPage: PropTypes.func,
+  allSelected: PropTypes.bool 
+}
