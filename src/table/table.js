@@ -14,7 +14,6 @@ const Table = props => {
       setPreviousPage()
     };
   }
-
   return (
     <div style={{'maxHeight': '400px', 'overflow': 'scroll', 'margin': '0 auto', 'fontSize': '10px', clear: 'both'}} onScroll={scrollhandler} >
       <table style={{width: '100%'}}>

@@ -41,8 +41,8 @@ const DataTable = (props) => {
   let [data, setData] = useState([]);
   let [currentPage, setCurrentPage] = useState(1);
   let [currentData, setCurrentData] = useState([]);
+  let [isLoadingData, setIsLoadingData] = useState(false);
   let [neighbour] = useState(2);
-  let isLoadingData = false;
   const numberOfEntryPerPage = 100;
   const totalNumberOfPages = Math.ceil(data.length/numberOfEntryPerPage);
 
@@ -51,10 +51,10 @@ const DataTable = (props) => {
       // fetch Data
       let startIndex = currentPage * numberOfEntryPerPage;
       let url = "https://jsonplaceholder.typicode.com/photos?";
-      isLoadingData = true;
+      setIsLoadingData(true);
       let data = await fetch(url + '_start='+ startIndex + '&limit=' + numberOfEntryPerPage)
                       .then(respone => respone.json());
-      isLoadingData = true;
+      setIsLoadingData(false);
       setData(data);
     }
     fetchData();
@@ -86,18 +86,21 @@ const DataTable = (props) => {
   let setPreviousPage = () => {
     setCurrentPage(currentPage--);
   }
-
   return (
-    <Table
-      isLoadingData={isLoadingData}
-      setNextPage={setNextPage}
-      selectRows={selectRows}
-      onRowClick={e => console.log(e)}
-      onSelectionChanged={e => console.log(e, 'selection Changed')}
-      rows={currentData}
-      columns={columnsConfig}
-      numberOfEntry={numberOfEntryPerPage}
-    />
+    <>
+      <Table
+        setNextPage={setNextPage}
+        selectRows={selectRows}
+        onRowClick={e => console.log(e)}
+        onSelectionChanged={e => console.log(e, 'selection Changed')}
+        rows={currentData}
+        columns={columnsConfig}
+        numberOfEntry={numberOfEntryPerPage}
+      />
+      {isLoadingData && <div>
+        <span style={{width: '100%', textAlign: "center", fontSize: '24px'}}>...Loading</span>
+      </div>}
+    </>
   )
 }
 
