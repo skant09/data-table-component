@@ -41,25 +41,31 @@ const DataTable = (props) => {
   let [data, setData] = useState([]);
   let [currentPage, setCurrentPage] = useState(1);
   let [currentData, setCurrentData] = useState([]);
-  let [neighbour, setNeighbour] = useState(2);
-  let numberOfEntry = 100;
+  let [neighbour] = useState(2);
+  let isLoadingData = false;
+  const numberOfEntryPerPage = 100;
+  const totalNumberOfPages = Math.ceil(data.length/numberOfEntryPerPage);
+
   useEffect(() => {
     async function fetchData(){
       // fetch Data
-      let data = await fetch('https://jsonplaceholder.typicode.com/photos')
+      let startIndex = currentPage * numberOfEntryPerPage;
+      let url = "https://jsonplaceholder.typicode.com/photos?";
+      isLoadingData = true;
+      let data = await fetch(url + '_start='+ startIndex + '&limit=' + numberOfEntryPerPage)
                       .then(respone => respone.json());
+      isLoadingData = true;
       setData(data);
     }
     fetchData();
-  }, []);
+  }, [currentPage]);
 
-  let totalNumberOfPages = Math.ceil(data.length/numberOfEntry);
   useEffect(()=>{
-    let startIndex = Math.max(currentPage - neighbour, 0) * numberOfEntry;
-    let endIndex = Math.min(currentPage + neighbour, totalNumberOfPages) * numberOfEntry;
+    let startIndex = Math.max(currentPage - neighbour, 0) * numberOfEntryPerPage;
+    let endIndex = Math.min(currentPage + neighbour, totalNumberOfPages) * numberOfEntryPerPage;
     let currentData = data.slice(startIndex, endIndex);
     setCurrentData(currentData);
-  }, [data, currentPage])
+  }, [data, currentPage, neighbour])
 
   selectRows = selection => e => {
     data = data.map((d, i) => {
@@ -83,13 +89,14 @@ const DataTable = (props) => {
 
   return (
     <Table
+      isLoadingData={isLoadingData}
       setNextPage={setNextPage}
       selectRows={selectRows}
       onRowClick={e => console.log(e)}
       onSelectionChanged={e => console.log(e, 'selection Changed')}
       rows={currentData}
       columns={columnsConfig}
-      numberOfEntry={numberOfEntry}
+      numberOfEntry={numberOfEntryPerPage}
     />
   )
 }

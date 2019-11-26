@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import TableHeader from './tableHeader';
 import TableBody from './tableBody';
 // import './table.css'
 
-const Table = ({columns, rows, onRowClick, selectRows, setPreviousPage, setNextPage}) => {
+const Table = props => {
+  const {columns, rows, onRowClick, selectRows, setPreviousPage, setNextPage} = props;
   let scrollhandler = e => {
     let ele = e.target;
     if(ele.scrollTop + 50 >= (ele.scrollHeight - ele.offsetHeight)){
