@@ -43,6 +43,7 @@ const DataTable = (props) => {
   let [currentData, setCurrentData] = useState([]);
   let [isLoadingData, setIsLoadingData] = useState(false);
   let [allSelected, setAllSelected] = useState(false);
+  let [searchTerm, setSearchTerm] = useState('');
   let [neighbour] = useState(2);
   const numberOfEntryPerPage = 100;
   const totalNumberOfPages = Math.ceil(data.length/numberOfEntryPerPage);
@@ -53,13 +54,13 @@ const DataTable = (props) => {
       let startIndex = currentPage * numberOfEntryPerPage;
       let url = "https://jsonplaceholder.typicode.com/photos?";
       setIsLoadingData(true);
-      let _data = await fetch(url + '_start='+ startIndex + '&_limit=' + numberOfEntryPerPage)
+      let _data = await fetch(url + '_start='+ startIndex + '&_limit=' + numberOfEntryPerPage +'&q='+searchTerm)
                       .then(respone => respone.json());
       setIsLoadingData(false);
       setData([...data, ..._data]);
     }
     fetchData();
-  }, [currentPage]);
+  }, [currentPage, searchTerm]);
 
   useEffect(()=>{
     let startIndex = Math.max(currentPage - neighbour, 0) * numberOfEntryPerPage;
@@ -77,10 +78,8 @@ const DataTable = (props) => {
       })
       return setData(data)  
     } 
-    console.log(selection);
     data = data.map((d, i) => {
       if(selection && selection.rowIndex === i) {
-        console.log(d);
         d.checked = !Boolean(selection.checked);
       }
       return {...d}
@@ -96,8 +95,14 @@ const DataTable = (props) => {
   let setPreviousPage = () => {
     setCurrentPage(currentPage--);
   }
+  let fetchSearchTerm = e => {
+    setCurrentPage(0);
+    setData([]);
+    setSearchTerm(e.target.value);
+  }
   return (
     <>
+      <input type="text" placeholder="Search any term..." onChange={fetchSearchTerm} style={{width: '100%', height: '30px', fontSize: '24px'}}/>
       <Table
         allSelected={allSelected}
         setNextPage={setNextPage}
@@ -109,6 +114,9 @@ const DataTable = (props) => {
       />
       {isLoadingData && <div>
         <span style={{width: '100%', textAlign: "center", fontSize: '24px'}}>...Loading</span>
+      </div>}
+      {!isLoadingData && !data.length && <div>
+        <span style={{width: '100%', textAlign: "center", fontSize: '24px'}}>No data found</span>
       </div>}
     </>
   )
